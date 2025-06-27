@@ -5,7 +5,7 @@ const cors = require('cors');
 dotenv.config();
 app.use(express.json());
 app.use(cors());
-app.use('/v1/api/android',require('./routes/androidRoutes'))
+app.use('/v1/api/android',require('./routes/main'))
 app.listen(process.env.PORT, async () => {
   console.log(`running in port ${process.env.PORT}`);
 });
