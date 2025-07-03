@@ -2,6 +2,7 @@ const { runADB } = require("../utils/androidUtils");
 const { getGeminiResponse } = require("../utils/gemini");
 const play = require("../utils/tscrap");
 const { android } = require("./androidController");
+const { AccessLed } = require("./espController");
 const { LaptopAccess } = require("./laptopController");
 
 exports.command = async (req, res) => {
@@ -18,6 +19,16 @@ exports.command = async (req, res) => {
     }
     if (command.toLowerCase().includes("phone")) {
       return await android(command, res);
+    }
+
+    if (command.toLowerCase().includes("bulb")) {
+      if (command.toLowerCase().includes("on")) {
+        await AccessLed(true)
+        return res.send({ status: "success", message: "Bulb turned on" });
+      } else {
+         await AccessLed(false)
+        return res.send({ status: "success", message: "Bulb turned off" });
+      }
     }
     if (
       !command.toLowerCase().includes("phone") ||

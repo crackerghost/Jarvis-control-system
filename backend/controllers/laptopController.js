@@ -29,7 +29,9 @@ Respond ONLY with an array like this:
     .replace(/\n```$/, "")
     .trim();
 
+
+    
   exeCommand = JSON.parse(jsonString);
   await runLaptopCommand(exeCommand);
-  return res.send({ status: "success" });
+  res.send({ status: "success" });
 };
